@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Form</string>
+    <string-array name="countryList">
+        <item>select</item>
+        <item>India</item>
+        <item>China</item>
+        <item>ME</item>
+        <item>NA</item>
+    </string-array>
+</resources>
