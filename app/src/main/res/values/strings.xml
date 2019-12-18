@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Form</string>
+    <string name="Female">Female</string>
+    <string name="Male">Male</string>
     <string-array name="countryList">
         <item>select</item>
         <item>India</item>

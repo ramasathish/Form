@@ -1,26 +1,51 @@
 package com.example.form;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.Switch;
+import android.widget.Toast;
+
+import com.example.form.databinding.ActivityMainBinding;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.DataBindingUtil;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    RegistrationViewModel registrationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        /* setContentView(R.layout.activity_main);Data */
+        ActivityMainBinding activityMainBinding= DataBindingUtil.setContentView(this,R.layout.activity_main);
+        registrationViewModel=new RegistrationViewModel();
+        activityMainBinding.setRegViewModel(registrationViewModel);
 
+
+    }
+    static Toast toast;
+
+    @BindingAdapter({"toastMessage"})
+    public static   void runMe(View view, String message) {
+        System.out.println("Message"+message);
+        if (message != null) {
+            toast = Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT);
+            toast.show();
+          /*  Handler handler = new Handler();
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    toast.show();
+                }
+            }, 1000);*/
+        }
     }
 
    /* @Override
@@ -30,58 +55,54 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
     public void onSubmit(View view){
+        final Intent intent=new Intent(this,WelcomeActivity.class);
 
-        EditText editText;
-        editText=(EditText) findViewById(R.id.namef);
-        String name=editText.getText().toString();
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Do you want to Proceed");
+        builder.setCancelable(false);
 
-        editText=(EditText) findViewById(R.id.mobilef);
-        String contactNo=editText.getText().toString();
-
-        editText=(EditText) findViewById(R.id.emailf);
-        String email=editText.getText().toString();
-
-        RadioGroup rad;
-        rad=(RadioGroup)findViewById(R.id.radioGroup);
-
-    /*    rad.clearCheck();
-        rad.setOnCheckedChangeListener(
-                new radioGroup.OnCheckedChangeListener(){});*/
-    int selectedId=rad.getCheckedRadioButtonId();
-    RadioButton value=(RadioButton) findViewById(selectedId);
-    String gender= value.getText().toString();
-
-    Spinner spinner=(Spinner) findViewById(R.id.countryList);
-    String country=spinner.getSelectedItem().toString();
-
-        Switch sw=(Switch) findViewById(R.id.fordEmployee);
-     //  Boolean switch=sw.isChecked();
-        String swit=sw.getText().toString();
-
-        editText=(EditText) findViewById(R.id.pass);
-        String pwd=editText.getText().toString();
-
-        editText=(EditText) findViewById(R.id.confpassf);
-        String pwdcnf=editText.getText().toString();
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
 
-        Intent intent=new Intent(this,WelcomeActivity.class);
 
-        //Creating new object of bundle and adding the parameters
+                //Creating new object of bundle and adding the parameters
 
-        Bundle bundle =new Bundle();
-        bundle.putString("Name",name);
-        bundle.putString("contact",contactNo);
-        bundle.putString("email",email);
-        bundle.putString("gender",gender);
-        bundle.putString("Country",country);
-        bundle.putString("Switch",swit);
+                String  name= registrationViewModel.username.get();
+                String contactNo=registrationViewModel.contactNo.get();
+                String  email= registrationViewModel.emailId.get();
+                String gender=registrationViewModel.gender.get();
 
-        intent.putExtras(bundle);
-        //intent.putExtra("bundle",bundle);
+                String  country= registrationViewModel.country.get();
 
 
-            startActivity(intent);
+                Bundle bundle =new Bundle();
+                bundle.putString("Name",name);
+                bundle.putString("contact",contactNo);
+                bundle.putString("email",email);
+                bundle.putString("gender",gender);
+                bundle.putString("Country",country);
+
+
+                intent.putExtras(bundle);
+                //intent.putExtra("bundle",bundle);
+
+
+                startActivity(intent);
+
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        AlertDialog alertDialog=builder.create();
+        alertDialog.show();
 
 
         /*Using Parcelable interface
