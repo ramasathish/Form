@@ -55,7 +55,8 @@
                 app:layout_constraintHorizontal_bias="0.024"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/confpass"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="1.0"
+                android:onClick="@{()->regViewModel.agreeCheckBoxValidation(@string/Agree)}"/>
 
             <EditText
                 android:id="@+id/namef"
@@ -64,7 +65,8 @@
                 android:layout_marginTop="92dp"
                 android:layout_marginEnd="28dp"
                 android:layout_marginRight="28dp"
-                android:addTextChangedListener="@{regViewModel.usernameTextWatcher}"
+                android:onFocusChange="@{(view,hasFocus)->regViewModel.usernameValidation(view, regViewModel.username)}"
+
                 android:ems="10"
                 android:focusable="true"
                 android:inputType="textPersonName"
@@ -73,7 +75,7 @@
                 android:textSize="14dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline"
-                bind:toastMessage="@{regViewModel.toastMessage}"
+
 
                 />
 
@@ -85,7 +87,8 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginRight="12dp"
-                android:addTextChangedListener="@{regViewModel.emailIdWatcher}"
+                android:onFocusChange="@{(view,hasFocus)->regViewModel.emailIdValidation(view, regViewModel.emailId)}"
+
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:text="@={regViewModel.emailId}"
@@ -94,7 +97,7 @@
                 app:layout_constraintHorizontal_bias="0.677"
                 app:layout_constraintStart_toEndOf="@+id/email"
                 app:layout_constraintTop_toBottomOf="@+id/mobilef"
-                bind:toastMessage="@{regViewModel.toastMessage}" />
+                 />
 
             <EditText
                 android:id="@+id/pass"
@@ -103,7 +106,6 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginRight="40dp"
-                android:addTextChangedListener="@{regViewModel.passwordWatcher}"
                 android:ems="15"
                 android:inputType="textPassword"
                 android:text="@={regViewModel.password}"
@@ -111,7 +113,9 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/setpass"
                 app:layout_constraintTop_toBottomOf="@+id/countryList"
-                bind:toastMessage="@{regViewModel.toastMessage}" />
+                android:onFocusChange="@{(view,hasFocus)->regViewModel.passwordValidation(view,regViewModel.password)}"
+
+                />
 
             <EditText
                 android:id="@+id/confpassf"
@@ -122,21 +126,23 @@
                 android:layout_marginRight="16dp"
                 android:ems="15"
                 android:inputType="textPassword"
-                android:onFocusChange="@{(view,hasFocus)->regViewModel.passwordClick(view, regViewModel.confPassword)}"
                 android:text="@={regViewModel.confPassword}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.583"
                 app:layout_constraintStart_toEndOf="@+id/confpass"
                 app:layout_constraintTop_toBottomOf="@+id/pass"
-                app:layout_constraintVertical_bias="0.019" />
+                app:layout_constraintVertical_bias="0.019"
+                android:onFocusChange="@{(view,hasFocus)->regViewModel.passwordClick(view, regViewModel.confPassword)}"
+                />
 
             <EditText
                 android:id="@+id/mobilef"
                 android:layout_width="204dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="4dp"
-                android:addTextChangedListener="@{regViewModel.contactNoWatcher}"
+                android:onFocusChange="@{(view,hasFocus)->regViewModel.contactnoValidation(view, regViewModel.contactNo)}"
+
                 android:ems="10"
                 android:inputType="phone"
                 android:text="@={regViewModel.contactNo}"
@@ -145,7 +151,7 @@
                 app:layout_constraintHorizontal_bias="0.536"
                 app:layout_constraintStart_toEndOf="@+id/mobile"
                 app:layout_constraintTop_toBottomOf="@+id/namef"
-                bind:toastMessage="@{regViewModel.toastMessage}" />
+                 />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
@@ -190,7 +196,7 @@
                 app:layout_constraintHorizontal_bias="0.284"
                 app:layout_constraintStart_toEndOf="@+id/countrys"
                 app:layout_constraintTop_toBottomOf="@+id/fordEmployee"
-                bind:toastMessage="@{regViewModel.toastMessage}" />
+                 />
 
             <Switch
                 android:id="@+id/fordEmployee"
