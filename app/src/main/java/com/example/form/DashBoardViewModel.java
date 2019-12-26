@@ -4,5 +4,6 @@ import androidx.databinding.ObservableField;
 
 public class DashBoardViewModel  {
     public ObservableField<String> newMovie=new ObservableField<String>();
+    public ObservableField<String> navigateLink=new ObservableField<String>();
 
 }

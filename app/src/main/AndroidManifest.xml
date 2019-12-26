@@ -10,12 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".WelcomeActivity"
-            android:parentActivityName=".MainActivity"
+        <activity android:name=".RecyclerViewActivity"
+            android:parentActivityName=".MovieBookingMainActivity"
 
 
             ></activity>
-        <activity android:name=".MovieBookingMainActivity">
+        <activity android:name=".MovieBookingMainActivity"
+            android:parentActivityName=".LoginActivity"
+
+
+            ></activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
