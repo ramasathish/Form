@@ -8,8 +8,6 @@ import android.widget.Toast;
 
 import com.example.form.databinding.LoginlayoutBinding;
 
-import javax.inject.Inject;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
@@ -18,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    @Inject
+
     ResponseBuilder responseBuilder;
     LoginViewModel loginViewModel;
 
@@ -45,14 +43,10 @@ public class LoginActivity extends AppCompatActivity {
         if(response) {
             Intent intent = new Intent(this, MovieBookingMainActivity.class);
             startActivity(intent);
-            closeAppln();
+
         }
         else
             Toast.makeText(this,"Login Failed",Toast.LENGTH_SHORT).show();
-    }
-
-    public void closeAppln(){
-        Toast.makeText(this,"Logout from Application",Toast.LENGTH_SHORT).show();
     }
 
 

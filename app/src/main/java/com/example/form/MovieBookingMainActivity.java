@@ -39,7 +39,7 @@ public class MovieBookingMainActivity extends AppCompatActivity {
         SharedPreferenceComponent sharedPreferenceComponent = DaggerSharedPreferenceComponent.builder().
                 sharedPreferenceBuilder(new SharedPreferenceBuilder(this)).build();
 
-        sharedPreferenceComponent.getSharedPreferenceObj(this);
+      //  sharedPreferenceComponent.getSharedPreferenceObj(this);
         DaggerResponseBuilderComponent.create();
 
         sharedPreferenceComponent.getSharedPreferenceBuilder().addDataInSharedPref(dashBoardViewModel.newMovie.get(),dashBoardViewModel.newMovie.get());

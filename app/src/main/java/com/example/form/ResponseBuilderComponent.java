@@ -8,5 +8,5 @@ public interface ResponseBuilderComponent {
     SuccessResponse getSuccessResponse();
     FailureResponse getFailureResponse();
 
-    void compoenentInject(LoginActivity loginActivity);
+
 }
