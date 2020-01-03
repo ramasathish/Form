@@ -8,4 +8,9 @@ public class LoginViewModel extends ViewModel {
     public ObservableField<String> password=new ObservableField<String>();
 
 
+    public boolean loginValidation(){
+        ResponseBuilderComponent responseBuilderComponent =  DaggerResponseBuilderComponent.create();
+        return responseBuilderComponent.getResponseBuilder().validate(username.get(),password.get());
+    }
+
 }

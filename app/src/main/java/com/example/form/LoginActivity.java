@@ -12,23 +12,23 @@ import javax.inject.Inject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 public class LoginActivity extends AppCompatActivity {
 
-    LoginViewModel loginViewModel=new LoginViewModel();
+
 
     @Inject
     ResponseBuilder responseBuilder;
-
+    LoginViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        /* setContentView(R.layout.activity_main);Data */
 
         LoginlayoutBinding loginlayoutBinding = DataBindingUtil.setContentView(this, R.layout.loginlayout);
-
+        loginViewModel= ViewModelProviders.of(this).get(LoginViewModel.class);
         loginlayoutBinding.setLoginViewModel(loginViewModel);
 
 
@@ -41,17 +41,18 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void onLogin(View view){
 
-       ResponseBuilderComponent component=DaggerResponseBuilderComponent.create();
-     //  responseBuilder = component.getResponseBuilder();
-        component.compoenentInject(this);
-        boolean response=responseBuilder.validate(loginViewModel.username.get(),loginViewModel.password.get());
-
+       boolean response = loginViewModel.loginValidation();
         if(response) {
             Intent intent = new Intent(this, MovieBookingMainActivity.class);
             startActivity(intent);
+            closeAppln();
         }
         else
             Toast.makeText(this,"Login Failed",Toast.LENGTH_SHORT).show();
+    }
+
+    public void closeAppln(){
+        Toast.makeText(this,"Logout from Application",Toast.LENGTH_SHORT).show();
     }
 
 

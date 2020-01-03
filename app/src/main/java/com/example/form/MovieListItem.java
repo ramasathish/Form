@@ -12,5 +12,15 @@ public class MovieListItem {
     public ArrayList<String> movieName;
 
 
-
 }
+
+
+
+
+
+
+
+
+
+
+

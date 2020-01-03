@@ -1,8 +1,6 @@
 package com.example.form;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
@@ -38,11 +36,13 @@ public class MovieBookingMainActivity extends AppCompatActivity {
 
 
     public void addNewMovie(View view) {
+        SharedPreferenceComponent sharedPreferenceComponent = DaggerSharedPreferenceComponent.builder().
+                sharedPreferenceBuilder(new SharedPreferenceBuilder(this)).build();
 
+        sharedPreferenceComponent.getSharedPreferenceObj(this);
+        DaggerResponseBuilderComponent.create();
 
-        SharedPreferences sharedPreferences = getSharedPreferences(MOVIE_BOOKING, Context.MODE_PRIVATE);
-
-        sharedPreferences.edit().putString(dashBoardViewModel.newMovie.get(), dashBoardViewModel.newMovie.get()).commit();
+        sharedPreferenceComponent.getSharedPreferenceBuilder().addDataInSharedPref(dashBoardViewModel.newMovie.get(),dashBoardViewModel.newMovie.get());
 
         Toast.makeText(view.getContext(), dashBoardViewModel.newMovie.get() + " Added in Shared Preferences", Toast.LENGTH_LONG).show();
     }
