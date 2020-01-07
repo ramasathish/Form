@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        /* setContentView(R.layout.activity_main);Data */
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         registrationViewModel = new RegistrationViewModel();
         activityMainBinding.setRegViewModel(registrationViewModel);
@@ -37,22 +36,8 @@ public class MainActivity extends AppCompatActivity {
         if (message != null) {
             toast = Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT);
             toast.show();
-          /*  Handler handler = new Handler();
-
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    toast.show();
-                }
-            }, 1000);*/
         }
     }
-
-   /* @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-    }*/
 
     public void onSubmit(View view) {
         final Intent intent = new Intent(this, WelcomeActivity.class);

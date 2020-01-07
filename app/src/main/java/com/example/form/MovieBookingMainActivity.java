@@ -11,6 +11,8 @@ import com.example.form.databinding.DashboardBinding;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -19,6 +21,8 @@ public class MovieBookingMainActivity extends AppCompatActivity {
     private DashBoardViewModel dashBoardViewModel = new DashBoardViewModel();
     private ArrayList<String> movies = new ArrayList();
     public static final String MOVIE_BOOKING = "com.example.form.movieBookingSharedFile";
+
+    @Inject  SharedPreferenceBuilder sharedPreferenceBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +43,10 @@ public class MovieBookingMainActivity extends AppCompatActivity {
         SharedPreferenceComponent sharedPreferenceComponent = DaggerSharedPreferenceComponent.builder().
                 sharedPreferenceBuilder(new SharedPreferenceBuilder(this)).build();
 
-        //  sharedPreferenceComponent.getSharedPreferenceObj(this);
+          sharedPreferenceComponent.getSharedPreferenceObj(this);
+          sharedPreferenceBuilder.addDataInSharedPref(dashBoardViewModel.newMovie.get(), dashBoardViewModel.newMovie.get());
 
-        sharedPreferenceComponent.getSharedPreferenceBuilder().addDataInSharedPref(dashBoardViewModel.newMovie.get(), dashBoardViewModel.newMovie.get());
+     //   sharedPreferenceComponent.getSharedPreferenceBuilder().addDataInSharedPref(dashBoardViewModel.newMovie.get(), dashBoardViewModel.newMovie.get());
 
         Toast.makeText(view.getContext(), dashBoardViewModel.newMovie.get() + " Added in Shared Preferences", Toast.LENGTH_LONG).show();
     }
