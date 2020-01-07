@@ -13,11 +13,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 public class LoginActivity extends AppCompatActivity {
-
-
-
-
-    ResponseBuilder responseBuilder;
     LoginViewModel loginViewModel;
 
     @Override
@@ -26,28 +21,25 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         LoginlayoutBinding loginlayoutBinding = DataBindingUtil.setContentView(this, R.layout.loginlayout);
-        loginViewModel= ViewModelProviders.of(this).get(LoginViewModel.class);
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         loginlayoutBinding.setLoginViewModel(loginViewModel);
 
-
-
     }
+
     @Override
-    public void onSaveInstanceState(Bundle bundle, PersistableBundle persistableBundle){
-        super.onSaveInstanceState(bundle,persistableBundle);
+    public void onSaveInstanceState(Bundle bundle, PersistableBundle persistableBundle) {
+        super.onSaveInstanceState(bundle, persistableBundle);
 
     }
-    public void onLogin(View view){
 
-       boolean response = loginViewModel.loginValidation();
-        if(response) {
+    public void onLogin(View view) {
+
+        boolean response = loginViewModel.loginValidation();
+        if (response) {
             Intent intent = new Intent(this, MovieBookingMainActivity.class);
             startActivity(intent);
 
-        }
-        else
-            Toast.makeText(this,"Login Failed",Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
     }
-
-
 }

@@ -10,16 +10,16 @@ import java.util.regex.Pattern;
 import androidx.databinding.ObservableField;
 
 public class RegistrationViewModel  {
-    public  ObservableField<String> username=new ObservableField<String>();
-    public  ObservableField<String>  contactNo=new ObservableField<String>();
-    public  ObservableField<String>  emailId=new ObservableField<String>();
-    public  ObservableField<String>  gender=new ObservableField<String>();
+    public final ObservableField<String> username=new ObservableField<String>();
+    public final ObservableField<String>  contactNo=new ObservableField<String>();
+    public final ObservableField<String>  emailId=new ObservableField<String>();
+    public final ObservableField<String>  gender=new ObservableField<String>();
     public final ObservableField<String>  fordEmp=new ObservableField<String>();
     public final ObservableField<String>  country=new ObservableField<String>();
     public final ObservableField<String>  password=new ObservableField<String>();
     public final ObservableField<String> confPassword=new ObservableField<String>();
     public final ObservableField<String>  toastMessage=new ObservableField<String>();
-    public  ObservableField<Boolean>  buttonEnabled=new ObservableField<>();
+    public final ObservableField<Boolean>  buttonEnabled=new ObservableField<>();
 
 
     public static ObservableField<Boolean> isValidUsername=new ObservableField<Boolean>(false);

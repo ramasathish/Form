@@ -35,7 +35,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
         sharedPreferences.getString("movie1", "");
         MovieListItem movieListItem = new MovieListItem(movies);
 
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         MovieBookingAdapter adapter = new MovieBookingAdapter(movieListItem);
         recyclerView.setHasFixedSize(true);

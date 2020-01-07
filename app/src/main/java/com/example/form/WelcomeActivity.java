@@ -9,23 +9,23 @@ import androidx.databinding.DataBindingUtil;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    public Bundle getbundle=null;
+    public Bundle getbundle = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-     //   setContentView(R.layout.activity_welcome);
-        ActivityWelcomeBinding welcomeBinding =DataBindingUtil.setContentView(this,R.layout.activity_welcome);
+        //   setContentView(R.layout.activity_welcome);
+        ActivityWelcomeBinding welcomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_welcome);
 
 
-        WelcomeActivityViewModel viewModel=new WelcomeActivityViewModel();
+        WelcomeActivityViewModel viewModel = new WelcomeActivityViewModel();
 
         welcomeBinding.setWelcomeViewModel(viewModel);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-      //  Intent mIntent = getIntent();
-        getbundle=this.getIntent().getExtras();
+        //  Intent mIntent = getIntent();
+        getbundle = this.getIntent().getExtras();
 
         viewModel.username.set(getbundle.getString("Name"));
 
@@ -36,7 +36,6 @@ public class WelcomeActivity extends AppCompatActivity {
         viewModel.gender.set(getbundle.getString("gender"));
 
         viewModel.country.set(getbundle.getString("Country"));
-
 
 
     }

@@ -15,9 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 public class MovieBookingMainActivity extends AppCompatActivity {
-    MovieListViewModel movieList = new MovieListViewModel();
-    DashBoardViewModel dashBoardViewModel = new DashBoardViewModel();
-    ArrayList<String> movies = new ArrayList();
+    private MovieListViewModel movieList = new MovieListViewModel();
+    private DashBoardViewModel dashBoardViewModel = new DashBoardViewModel();
+    private ArrayList<String> movies = new ArrayList();
     public static final String MOVIE_BOOKING = "com.example.form.movieBookingSharedFile";
 
     @Override
@@ -29,7 +29,7 @@ public class MovieBookingMainActivity extends AppCompatActivity {
 
         dashboardBinding.setDashBoardViewModel(dashBoardViewModel);
 
-        TextView navigateLink=(TextView)findViewById(R.id.navigateLink);
+        TextView navigateLink = (TextView) findViewById(R.id.navigateLink);
         navigateLink.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
@@ -39,16 +39,16 @@ public class MovieBookingMainActivity extends AppCompatActivity {
         SharedPreferenceComponent sharedPreferenceComponent = DaggerSharedPreferenceComponent.builder().
                 sharedPreferenceBuilder(new SharedPreferenceBuilder(this)).build();
 
-      //  sharedPreferenceComponent.getSharedPreferenceObj(this);
-        DaggerResponseBuilderComponent.create();
+        //  sharedPreferenceComponent.getSharedPreferenceObj(this);
 
-        sharedPreferenceComponent.getSharedPreferenceBuilder().addDataInSharedPref(dashBoardViewModel.newMovie.get(),dashBoardViewModel.newMovie.get());
+        sharedPreferenceComponent.getSharedPreferenceBuilder().addDataInSharedPref(dashBoardViewModel.newMovie.get(), dashBoardViewModel.newMovie.get());
 
         Toast.makeText(view.getContext(), dashBoardViewModel.newMovie.get() + " Added in Shared Preferences", Toast.LENGTH_LONG).show();
     }
+
     public void navigateRecyclerViewPage(View view) {
-         Intent intent=new Intent(this,RecyclerViewActivity.class);
-         startActivity(intent);
+        Intent intent = new Intent(this, RecyclerViewActivity.class);
+        startActivity(intent);
 
     }
 }
